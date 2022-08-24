@@ -1,0 +1,50 @@
+// Hover custom
+
+.explore {
+	padding-bottom: 1px;
+	border-bottom: 1px solid $link-color;
+	color: $link-color;
+
+	&:hover {
+		border-color: $link-hover-color;
+		color: $link-hover-color;
+	}
+}
+
+.hover-fade-in {
+  opacity: .85;
+  cursor: pointer;
+  @include transition($transition-fade);
+  
+  .hover-text-fade-in {
+    opacity: 0;
+    @include transition($transition-fade);
+  }
+	
+	&:hover {
+		opacity: 1;
+    
+    .hover-text-fade-in {
+      opacity: 1;
+    }
+	}
+}
+
+.hover-fade-out {
+  opacity: 1;
+  cursor: pointer;
+  @include transition($transition-fade);
+	
+  .hover-text-fade-out {
+    opacity: 1;
+    @include transition($transition-fade);
+  }
+  
+	&:hover {
+		opacity: .85;
+    
+    .hover-text-fade-out {
+      opacity: 0;
+    }
+	}
+}

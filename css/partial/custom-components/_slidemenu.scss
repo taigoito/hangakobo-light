@@ -1,0 +1,25 @@
+//
+// Slidemenu
+//
+
+#slidebar-open-abs {
+	letter-spacing: .5rem;
+}
+
+#slidemenu {
+	display: table;
+	height: 100%;
+	margin: auto;
+  @include fade($transition-fade);
+	
+	ul {
+		display: table-cell;
+		vertical-align: middle;
+		
+		li {
+			display: block;
+			padding: .5rem 0;
+			text-align: left;
+		}
+	}
+}

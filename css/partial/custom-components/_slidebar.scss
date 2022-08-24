@@ -1,0 +1,82 @@
+//
+// Slidebar
+//
+
+$slidebar-bg: rgba($gray-600, .85) !default;
+$slidebar-color: $gray-100 !default;
+$slidebar-hover-color: $link-hover-color !default;
+
+#slidebar-overlay {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 1000;
+	width: 100%;
+	height: 100%;
+	background-color: transparent;
+  @include collapse;
+}
+
+#slidebar-open-fixed, #slidebar {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 1010;
+	width: 0;
+	margin: auto;
+	text-align: center;
+	background-color: $slidebar-bg;
+}
+
+#slidebar-open-fixed {
+  right: -3rem;
+  width: 3rem;
+	height: 5rem;
+  line-height: 5rem;
+  color: $slidebar-color;
+  transition: right ease-out .25s;
+  
+  &:hover {
+    color: $slidebar-hover-color;
+  }
+	
+	&.show {
+		right: 0;
+	}
+}
+
+#slidebar {
+	height: 100%;
+  transition: width ease-out .25s;
+  
+  a {
+    color: $slidebar-color;
+    
+    &:hover {
+      color: $slidebar-hover-color;
+    }
+  }
+	
+	&.show {
+		width: 15rem;
+	}
+}
+
+#slidebar-close{ 
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 3rem;
+	height: 5rem;
+	line-height: 5rem;
+  color: $slidebar-color;
+	text-align: center;
+  
+  &:hover {
+      color: $slidebar-hover-color;
+    }
+
+	@include collapse;
+}

@@ -1,0 +1,94 @@
+//
+// Clipping
+//
+
+$clipping-sizes: (
+  xs: 3,
+  sm: 4,
+  md: 6,
+  lg: 8
+) !default;
+$clipping-rates: (
+  xs: 1,
+  sm: 3 / 4,
+  md: 3 / 4,
+  lg: 3 / 4
+) !default;
+$clipping-adjustment-size: 2;
+
+.clipping {
+  text-align: center;
+  overflow: hidden;
+  
+  .clipping-inner {
+    margin-left: -1rem;
+    margin-right: -1rem;
+    
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+  $grid-breakpoint: map-get($grid-breakpoints, $breakpoint);
+  $container-max-width: map-get($container-max-widths, $breakpoint);
+  @if $grid-breakpoint == 0 {
+    @each $infix, $size in $clipping-sizes {
+      $clipping-rate: map-get($clipping-rates, $infix);
+      @if $size <= 3 {
+        .clipping-#{$infix} {
+          height: (36rem / 3 - $clipping-adjustment-size) * $clipping-rate;
+          height: calc((50vw - #{$grid-gutter-width}) * #{$clipping-rate});
+          max-height: (36rem / 2 - $clipping-adjustment-size) * $clipping-rate;
+          
+          .clipping-inner {
+            margin-top: - $grid-gutter-width * $clipping-rate / 2;
+          }
+        }
+      } @else {
+        .clipping-#{$infix} {
+          height: (36rem * 2 / 3 - $clipping-adjustment-size) * $clipping-rate;
+          height: calc((100vw - #{$grid-gutter-width}) * #{$clipping-rate});
+          max-height: (36rem - $clipping-adjustment-size) * $clipping-rate;
+          
+          .clipping-inner {
+            margin-top: - $grid-gutter-width * $clipping-rate / 2;
+          }
+        }
+      }
+    }
+  }
+  
+  @if $grid-breakpoint == 768px {
+    @include media-breakpoint-up($breakpoint, $grid-breakpoints) {
+      @each $infix, $size in $clipping-sizes {
+        $clipping-rate: map-get($clipping-rates, $infix);
+        @if $size <= 4 {
+          .clipping-#{$infix} {
+            height: ($container-max-width / 2 - $clipping-adjustment-size) * $clipping-rate;
+            max-height: initial;
+          }
+        } @else {
+          .clipping-#{$infix} {
+            height: ($container-max-width * 5 / 6 - $clipping-adjustment-size) * $clipping-rate;
+            max-height: initial;
+          }
+        }
+      }
+    }
+  }
+  
+  @if $grid-breakpoint > 768px {
+    @include media-breakpoint-up($breakpoint, $grid-breakpoints) {
+      @each $infix, $size in $clipping-sizes {
+        $clipping-rate: map-get($clipping-rates, $infix);
+        .clipping-#{$infix} {
+          height: ($container-max-width * $size / $grid-columns - $clipping-adjustment-size) * $clipping-rate;
+          max-height: initial;
+        }
+      }
+    }
+  }
+}

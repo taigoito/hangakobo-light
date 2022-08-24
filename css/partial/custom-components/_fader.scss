@@ -1,0 +1,67 @@
+//
+// Fader
+//
+
+.fader {
+  position: relative;
+}
+
+.fader-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  
+  &.enter {
+    animation: fade-in 1s ease-out;
+  }
+  
+  &.leave {
+    animation: fade-out 1s ease-out;
+  }
+}
+
+.fader-bg .fader-item {
+  background-size: cover;
+}
+
+.fader-figures .fader-item {
+  background-size: contain;
+}
+
+.fader-item.fader-top {
+  background-position: center top;
+}
+
+.fader-prev, .fader-next {
+  color: $link-color;
+  
+  &:hover {
+    color: $link-hover-color;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  
+  100% {
+    opacity: 0;
+  }
+}

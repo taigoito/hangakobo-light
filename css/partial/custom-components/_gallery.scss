@@ -1,0 +1,140 @@
+//
+// Gallery
+//
+
+$gallery-container-sizes: (
+  sm: 480px,
+  md: 720px,
+  lg: 960px
+) !default;
+
+$gallery-border: $gray-200 !default;
+$gallery-bg: $white !default;
+$gallery-color: $gray-800 !default;
+
+.gallery {
+  position: fixed;
+	top: 0;
+  left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 1100;
+	width: 100%;
+	height: 100%;
+  padding: 0 2rem;
+  background-color: rgba($gray-800, .5);
+  overflow-x: hidden;
+  overflow-y: auto;
+  @include fade($transition-fade-slower);
+}
+
+.gallery-container {
+  position: relative;
+  width: 480px;
+  max-width: 100%;
+  border: 1px solid $gallery-border;
+  border-radius: $border-radius;
+  margin: 2rem auto;
+  padding: 1rem 2rem;
+	background-color: $gallery-bg;
+  color: $gallery-color;
+  box-shadow: 1rem 1rem 1rem rgba(0, 0, 0, .3);
+}
+
+@each $size, $length in $gallery-container-sizes {
+  .gallery-#{$size} {
+    width: $length;
+  }
+}
+
+.gallery-content {
+  position: relative;
+  height: 570px;
+  height: calc(600px - 2rem);
+  
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    
+    &.enter {
+      animation: 1s fade-in ease-in-out;
+    }
+    
+    &.leave {
+      animation: 1s fade-out ease-in-out;
+    }
+  }
+}
+
+.gallery-prev,
+.gallery-next,
+.gallery-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 2rem;
+  height: 2rem;
+  margin: .5rem;
+  border: 0;
+  border-radius: 50%;
+  background: $white;
+  text-align: center;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, .3);
+  cursor: pointer;
+  
+  .fa-lg {
+    line-height: 1.5;
+  }
+}
+
+.gallery-prev {
+  right: 6rem;
+  
+  .fa-lg {
+    line-height: 1.625;
+  }
+}
+
+.gallery-next {
+  right: 3rem;
+  
+  .fa-lg {
+    line-height: 1.625;
+  }
+}
+
+.scroll-lock {
+  overflow: hidden;
+}
+
+#scrollbar-measure {
+  position: absolute;
+  top: -9999px;
+  width: 72px;
+  height: 72px;
+  overflow: scroll;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  
+  100% {
+    opacity: 0;
+  }
+}

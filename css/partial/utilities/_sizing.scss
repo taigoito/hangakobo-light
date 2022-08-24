@@ -1,0 +1,41 @@
+// Sizing custom
+
+$static-sizes: (
+  2: 2rem,
+  3: 3rem,
+  4: 4rem,
+  6: 6rem,
+  8: 8rem,
+  9: 9rem,
+  12: 12rem,
+  16: 16rem,
+  18: 18rem,
+  24: 24rem,
+  36: 36rem
+);
+
+@each $size, $length in $static-sizes {
+  .sw-#{$size} {
+    flex: 0 0 #{$length};
+    width: $length !important;
+    max-width: 100% !important;
+  }
+}
+
+@each $prop, $abbrev in (height: sh, line-height: lh) {
+  @each $size, $length in $static-sizes {
+    .#{$abbrev}-#{$size} { #{$prop}: $length !important; }
+  }
+}
+
+@each $prop, $abbrev in (width: dw, height: dh) {
+  @each $size, $length in $sizes {
+    .#{$abbrev}-#{$size} { #{$prop}: $length !important; }
+  }
+}
+
+.jumbotron {
+  position: relative;
+  height: 100vh !important;
+  min-height: 576px !important;
+}

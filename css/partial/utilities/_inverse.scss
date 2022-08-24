@@ -1,0 +1,20 @@
+// Inverse
+
+.inverse {
+  color: $inverse-color !important;
+  
+  h1, h2, h3, h4, h5, h6,
+  .h1, .h2, .h3, .h4, .h5, .h6 {
+    color: $inverse-color !important;
+  }
+  
+  a {
+    color: $link-inverse-color !important;
+    text-decoration: $link-inverse-decoration !important;
+
+    @include hover {
+      color: $link-inverse-hover-color !important;
+      text-decoration: $link-inverse-hover-decoration !important;
+    }
+  }
+}
