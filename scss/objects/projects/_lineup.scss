@@ -1,0 +1,88 @@
+/*
+ * Project - Lineup
+ */
+
+.lineup {
+  &.--list {
+    @include row();
+    padding-top: 0.375rem;
+    padding-bottom: 0.75rem;
+    border-top: 1px solid themeColor("lighter");
+
+    @media (min-width: breakpoint("md")) {
+      margin-left: -2.25rem;
+      margin-right: -2.25rem;
+    }
+
+    .lineup {
+      &__itemName {
+        flex: 0 0 100%;
+        margin: 0;
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+      }
+
+      &__content {
+        @include col(2, true);
+
+        h4, p {
+          margin: 0;
+        }
+      }
+
+      &__image {
+        @include col(1, true);
+      }
+
+      &__btn {
+        @include makeButton();
+        display: inline-block;
+        width: 12rem;
+        padding: 0;
+        background-color: colorDefinition("twinsPrimary");
+        color: colorDefinition("lightest");
+
+        &:hover {
+          color: inherit;
+        }
+      }
+    }
+  }
+
+  &.--single {
+    p:not(.lineup__lead), table {
+      @include smallText();
+      text-align: justify;
+    }
+
+    .lineup {
+      &__gallery {
+        list-style: none;
+        padding: 0;
+        @include row(flex-start);
+        gap: 0.75rem;
+      }
+
+      &__galleryItem {
+        flex: 0 0 6rem;
+      }
+
+      &__galleryImage2 {
+        display: none;
+      }
+
+      &__back {
+        color: colorDefinition("lightest");
+
+        &:hover {
+          color: colorDefinition("twinsPrimary");
+        }
+      }
+    }
+
+    @media (min-width: breakpoint("md")) {
+      margin-left: -2.25rem;
+      margin-right: -2.25rem;
+    }
+  }
+}

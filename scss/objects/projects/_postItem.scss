@@ -1,0 +1,53 @@
+/**
+ * Project - Post Item
+ */
+
+.postItem {
+  &__info {
+    margin-top: space(2);
+    margin-bottom: space(1);
+    font-size: $smallFontSize;
+  }
+
+  &__heading {
+    margin-top: space(2);
+    margin-bottom: space(1);
+  }
+
+  &__excerpt {
+    margin-bottom: space(1);
+  }
+
+  &.--single {
+    gap: 0;
+    
+    .postItem {
+      &__image {
+        @include col(5, false, "md");
+      }
+
+      &__content {
+        @include col(4, false, "md");
+        @include col(5, false, "lg");
+        margin-bottom: space(4);
+        @include smallText();
+      }
+    }
+
+    &.--switched {
+      .postItem {
+        &__image {
+          @media (min-width: breakpoint("md")) {
+            order: 1;
+          }
+        }
+
+        &__content {
+          @media (min-width: breakpoint("md")) {
+            order: 0;
+          }
+        }
+      }
+    }
+  }
+}

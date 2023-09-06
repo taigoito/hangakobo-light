@@ -1,0 +1,66 @@
+/*
+Theme Name: Hangakobo
+Description: This is a theme for Hanga Yubin-sha.
+Version: 3.1
+Requires PHP: 7.4
+Author: Taigo Ito
+Author URI: https://qwel.design/
+License: GNU General Public License v3 or later
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
+*/
+
+@charset "utf-8";
+
+// Settings
+@import "foundation/settings/colorSystem";
+@import "foundation/settings/gridSystem";
+@import "foundation/settings/typography";
+
+// Mixins
+@import "foundation/mixins/background";
+@import "foundation/mixins/button";
+@import "foundation/mixins/form";
+@import "foundation/mixins/table";
+@import "foundation/mixins/type";
+
+// Normalize
+@import "foundation/normalize";
+
+// WP Blocks
+@import "foundation/wpBlocks";
+
+// Layout
+@import "layout/container";
+@import "layout/header";
+@import "layout/gNav";
+@import "layout/main";
+@import "layout/footer";
+@import "layout/titleArea";
+
+// Components
+@import "objects/components/button";
+@import "objects/components/clock";
+@import "objects/components/cover";
+@import "objects/components/embed";
+@import "objects/components/form";
+@import "objects/components/gallery";
+@import "objects/components/icon";
+@import "objects/components/modal";
+@import "objects/components/preloader";
+@import "objects/components/slider";
+@import "objects/components/table";
+@import "objects/components/twins";
+
+// Projects
+@import "objects/projects/hero";
+@import "objects/projects/section";
+@import "objects/projects/postItem";
+@import "objects/projects/postList";
+@import "objects/projects/lineup";
+
+// Utility
+@import "objects/utilities/flex";
+@import "objects/utilities/flexItem";
+@import "objects/utilities/spacing";
+@import "objects/utilities/text";
+@import "objects/utilities/visibility";

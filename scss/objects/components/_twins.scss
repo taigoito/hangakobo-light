@@ -1,0 +1,617 @@
+/*
+ * Component - Twins
+ */
+
+// Settings
+$twins-btn-color:        colorDefinition("lightest");
+$twins-btn-hover-color:  saturate(lighten(colorDefinition("twinsPrimary"), 15%), 10%);
+$twins-common-btn-bg:    rgba(colorDefinition("twinsSecondary"), .85);
+$twins-more-btn-bg:      rgba(colorDefinition("twinsPrimary"), .85);
+$twins-btn-hover-bg:     rgba(colorDefinition("darkest"), .5);
+
+$twins-page-counts:        6;
+
+$twins-transition-slow:    all .25s ease-in-out;
+$twins-transition-slower:  all .5s ease-in-out;
+$twins-transition-slowest: all 1s ease-in-out;
+$twins-transition-fade:    opacity .25s linear;
+
+// Mixin
+@mixin twinsController {
+  width: 3.75rem;
+  height: 3.75rem;
+  margin: auto;
+  padding: 1rem 0 .5rem;
+  border: none; // Reset
+  background-color: $twins-common-btn-bg;
+  color: $twins-btn-color;
+  text-align: center;
+  transition: $twins-transition-slow;
+  cursor: pointer;
+  
+  &:hover {
+    background-color: $twins-btn-hover-bg;
+    color: $twins-btn-hover-color;
+  }
+  
+  i {
+    display: block;
+    font-size: 1.25rem;
+  }
+  
+  span {
+    display: block;
+    font-family: Verdana, Geneva, "sans-serif";
+    font-weight: 300;
+    font-size: .6rem;
+    letter-spacing: 0;
+  }
+
+  &.--collapse {
+    display: none;
+  }
+  
+  &.--enter {
+    animation: flip-in .25s ease-out;
+  }
+  
+  &.--leave {
+    animation: flip-out .25s ease-out;
+  }
+}
+
+.twins {
+  color: colorDefinition("lightest");
+
+  &.--dark {
+    background-color: colorDefinition("darkest");
+  }
+
+  &.--secondary {
+    background-color: colorDefinition("twinsSecondary");
+  }
+
+  &.--tertiary {
+    background-color: colorDefinition("twinsTertiary");
+  }
+
+  &:not(.--subpage) {
+    @media (min-width: breakpoint("lg")) {
+      height: 100vh;
+      min-height: 576px;
+      overflow: hidden;
+      transition: background-color .5s linear;
+    }
+  }
+
+  &__logo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 4.5rem;
+    margin: 0.75rem;
+
+    @media (min-width: breakpoint("md")) {
+      width: 6rem;
+    }
+  }
+
+  &__inner {
+    display: flex;
+    height: 100%;
+
+    &:not(.--subpage) {
+      width: 200%;
+      transition: $twins-transition-slowest;
+    }
+      
+    &.--showMore {
+      transform: translate(-25%, 0);
+    }
+
+    &.--subpage {
+      flex-flow: row-reverse wrap;
+      justify-content: flex-start;
+      width: 100%;
+      background-color: colorDefinition("twinsSecondary");
+    }
+  }
+
+  &__lead {
+    position: relative;
+    flex: 0 0 25%;
+    order: 0;
+    height: 100%;
+    overflow: hidden;
+  }
+    
+  &__leadContent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    
+    &.--enter {
+      animation: fade-in 1s ease-out;
+    }
+
+    &.--leave {
+      animation: fade-out 1s ease-out;
+    }
+    
+    &.--enter.--reverse {
+      animation: fade-in 1s ease-out;
+    }
+
+    &.--leave.--reverse {
+      animation: fade-out 1s ease-out;
+    }
+  }
+
+  &__leadPrimary {
+    width: 18rem;
+    max-width: 100%;
+    margin: auto;
+    border-bottom: 1px solid colorDefinition("light");
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  &__leadSecondary {
+    width: 18rem;
+    max-width: 100%;
+    margin: auto;
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  &__more {
+    position: relative;
+    flex: 0 0 25%;
+    order: 2;
+    height: 100%;
+    overflow: hidden;
+  }
+    
+  &__moreContent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+
+  &__section {
+    width: 100%;
+    margin: auto;
+    padding: 1.5rem 1.5rem 3rem;
+
+    @media (min-width: breakpoint("md")) {
+      padding-left: 4.5rem;
+      padding-right: 4.5rem;
+    }
+  }
+
+  &__heading {
+    font-size: 1.75rem;
+  }
+
+  &__content {
+    @include smallText();
+    text-align: justify;
+  }
+
+  &__images {
+    @include row();
+    gap: 0.75rem;
+    margin: 1.5rem auto;
+  }
+
+  &__image {
+    flex: 1 1 6rem;
+  }
+
+  &__tableWrap {
+    @media (max-width: breakpoint("md") - 0.1) {
+      width: 22.5rem;
+      margin: auto;
+      overflow-x: scroll;
+    }
+  }
+
+  &__tableCaption {
+    font-size: $h6FontSize;
+  }
+
+  &__table {
+    @include table();
+
+    @media (max-width: breakpoint("md") - 0.1) {
+      width: 30rem;
+    }
+  }
+
+  &__linkInline {
+    display: inline-block;
+    padding-left: .5rem;
+    padding-right: .5rem;
+    color: $twins-btn-color;
+    text-decoration: underline !important;
+    
+    &:hover {
+      color: $twins-btn-hover-color;
+      text-decoration: underline !important;
+    }
+  }
+
+  &__btn {
+    @include makeBlock();
+    @include makeButton();
+    padding: 0.375rem 0;
+    background-color: colorDefinition("twinsPrimary");
+    color: colorDefinition("lightest");
+
+    &:hover {
+      color: inherit;
+    }
+  }
+
+  &__menu {
+    position: relative;
+    z-index: 1;
+    flex: 0 0 25%;
+    order: 1;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    transition: $twins-transition-fade;
+    
+    &.--enter {
+      animation: delaying .5s ease-out;
+    }
+
+    &.--leave {
+      animation: delaying .5s ease-out;
+    }
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, .3);
+      box-shadow: 0 0 12rem rgba(0, 0, 0, .3) inset;
+      opacity: 0;
+      transition: $twins-transition-fade;
+    }
+    
+    &.--showMenu {
+      z-index: 1;
+      opacity: 1;
+      
+      &::before {
+        opacity: 1;
+      }
+    }
+  }
+    
+  &__menuCover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    transition: $twins-transition-slowest;
+    
+    &.--enter {
+      animation: slide-from-down 1s ease-out;
+    }
+
+    &.--leave {
+      animation: slide-to-up 1s ease-out;
+    }
+
+    &.--enter.--reverse {
+      animation: slide-from-up 1s ease-out;
+    }
+
+    &.--leave.--reverse {
+      animation: slide-to-down 1s ease-out;
+    }
+  }
+    
+  &__cover {
+    position: relative; // 1層手前へ出す
+    width: 100%;
+    height: 75vw;
+    opacity: 1;
+
+    @media (min-width: breakpoint("lg")) {
+      height: 100%;
+    }
+
+    @for $i from 1 through $twins-page-counts {
+      &[data-index="#{$i}"] {
+        background: url(./assets/twins/twins_bg_#{$i}.jpg) center center / cover no-repeat scroll;
+      }
+    }
+  
+    &.--change {
+      @for $i from 1 through $twins-page-counts {
+        &[data-index="#{$i}"] {
+          background: url(./assets/twins/twins_bg_#{$i}-change.jpg) center center / cover no-repeat scroll;
+        }
+      }
+      
+      @media (min-width: breakpoint("lg")) {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: $twins-transition-slowest;
+
+        @at-root .--showMore & {
+          opacity: 1;
+        }
+      }
+    }
+
+    &.--subpage {
+      @for $i from 1 through 4 {
+        &[data-index="#{$i}"] {
+          background: url(./assets/twins/series_#{$i}.jpg) center center / cover no-repeat scroll;
+        }
+      }
+
+      @media (min-width: breakpoint("lg")) {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 50%;
+        height: 100vh;
+      }
+    }
+  }
+
+  &__subpage {
+    @media (min-width: breakpoint("lg")) {
+      flex: 0 0 50%;
+    }
+  }
+
+  &__menuBar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transform: translate(100%, 0);
+    transition: $twins-transition-slower;
+
+    @at-root .twins__menu.--showMenu & {
+      transform: translate(0, 0);
+    }
+
+    @at-root .twins__menu.--showMenu.--leave & {
+      transform: translate(100%, 0);
+    }
+  }
+
+  &__menuItems {
+    list-style: none;
+    width: 100%;
+    max-width: 100%;
+    margin: auto;
+    padding: 1rem;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.25rem;
+    line-height: 2;
+    letter-spacing: .125em;
+        
+    a {
+      display: block;
+      color:$twins-btn-color;
+
+      &:hover {
+        background-color: rgba(colorDefinition("lightest"), .15);
+        color: $twins-btn-hover-color;
+      }
+    }
+  }
+
+  &__controller {
+    display: none;
+
+    @media (min-width: breakpoint("lg")) {
+      display: block;
+    }
+  }
+
+  &__menuOpen {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1000;
+    @include twinsController();
+  }
+
+  &__menuClose {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1000;
+    @include twinsController();
+    background-color: $twins-btn-hover-bg;
+  }
+
+  &__moreOpen {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: 1000;
+    @include twinsController();
+    background-color: $twins-more-btn-bg;
+  }
+
+  &__moreClose {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    bottom: 1rem;
+    z-index: 1000;
+    @include twinsController();
+    background-color: $twins-more-btn-bg;
+  }
+
+  &__pageToggle {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: 1000;
+    border-radius: 50%;
+    @include twinsController();
+    
+    &.--enter {
+      animation: bound-in .25s ease-out;
+    }
+    
+    &.--leave {
+      animation: bound-out .25s ease-out;
+    }
+  }
+}
+
+// keyframes
+@keyframes delaying {
+  0% {
+    opacity: 1;
+  }
+  
+  50% {
+    opacity: .99;
+  }
+  
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes bound-in {
+  0% {
+    opacity: 0;
+    transform: translate(0, -25%);
+  }
+  
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes bound-out {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+  
+  100% {
+    opacity: 0;
+    transform: translate(0, -25%);
+  }
+}
+
+@keyframes flip-in {
+  0% {
+    opacity: 0;
+    transform: rotateY(-90deg);
+  }
+  
+  100% {
+    opacity: 1;
+    transform: rotateY(0deg);
+  }
+}
+
+@keyframes flip-out {
+  0% {
+    opacity: 1;
+    transform: rotateY(0deg);
+  }
+  
+  100% {
+    opacity: 0;
+    transform: rotateY(90deg);
+  }
+}
+
+@keyframes slide-from-down {
+  0% {
+    transform: translate(0, 100%);
+  }
+  
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes slide-to-up {
+  0% {
+    transform: translate(0, 0);
+  }
+  
+  100% {
+    transform: translate(0, -100%);
+  }
+}
+
+@keyframes slide-from-up {
+  0% {
+    transform: translate(0, -100%);
+  }
+  
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes slide-to-down {
+  0% {
+    transform: translate(0, 0);
+  }
+  
+  100% {
+    transform: translate(0, 100%);
+  }
+}

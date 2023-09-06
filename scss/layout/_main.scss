@@ -1,0 +1,16 @@
+/**
+ * Layout - Main
+ */
+
+.main {
+  &__header,
+  &__container {
+    &:not(.--md) {
+      @extend %__containerLg;
+    }
+
+    &.--md {
+      @extend %__containerMd;
+    }
+  }
+}

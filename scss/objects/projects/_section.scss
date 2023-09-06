@@ -1,0 +1,23 @@
+/**
+ * Project - Section
+ */
+
+.section {
+  &__inner {
+    background-color: transparent;
+  }
+  
+  &__container {
+    @extend %__containerLg;
+
+    form {
+      width: min(100%, 600px);
+      margin: 0 auto;
+    }
+  }
+
+  &__heading {
+    margin: space(3) 0;
+    border-bottom: $sectionBorder;
+  }
+}

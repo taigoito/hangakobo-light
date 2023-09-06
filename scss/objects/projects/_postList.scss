@@ -1,0 +1,71 @@
+/**
+ * Project - Post List
+ */
+
+.postList {
+  &.--list {
+    .post {
+      margin-bottom: space(3);
+      padding-bottom: space(3);
+      border-bottom: $sectionBorder;
+
+      &:last-child {
+        border: 0;
+      }
+    }
+
+    .postItem {
+      @include row(center);
+      gap: 0 !important;
+
+      &__image {
+        @include col(3, ture, "md");
+        
+        figure {
+          margin: 0;
+        }
+
+        img {
+          aspect-ratio: 1 / $imgAspectRatio;
+          object-fit: cover;
+        }
+      }
+
+      &__content {
+        @include col(6, ture, "md");
+      }
+
+      &__heading {
+        font-size: $h3FontSize;
+      }
+
+      &__excerpt, &__more {
+        @include smallText();
+      }
+    }
+  }
+
+  &.--list:not(.--switched) {
+    .postItem__image {
+      img {
+        object-fit: contain !important;
+      }
+    }
+  }
+
+  &.--switched {
+    .postItem {
+      &__image {
+        @media (min-width: breakpoint("md")) {
+          order: 1;
+        }
+      }
+
+      &__content {
+        @media (min-width: breakpoint("md")) {
+          order: 0;
+        }
+      }
+    }
+  }
+}

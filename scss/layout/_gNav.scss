@@ -1,0 +1,26 @@
+/**
+ * Layout - G Nav
+ */
+
+.gNav {
+  @include row(space-between);
+  height: 100%;
+
+  &__siteBrand {
+    flex: 0 1 5.625rem; // height: 4.5rem
+    margin: 0;
+    line-height: 1;
+  }
+
+  &__primaryMenu {
+    //@media (max-width: breakpoint("md") - 0.1) {
+      display: none !important;
+    //}
+  }
+
+  &__socialMenu {
+    //@media (max-width: breakpoint("md") - 0.1) {
+      display: none !important;
+    //}
+  }
+}

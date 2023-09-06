@@ -1,0 +1,79 @@
+/*
+ * Component - Clock
+ */
+
+.clock {
+  @include container();
+  
+  @media (min-width: breakpoint("md")) {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  &__base {
+    @include col(5, false, "md");
+    padding: 0;
+
+    @media (min-width: breakpoint("md")) {
+      order: 1;
+    }
+  }
+  
+  &__image {
+    box-shadow: 36px 18px 18px rgba(0, 0, 0, .3);
+  }
+  
+  &__main {
+    position: absolute;
+    top: 34.5%;
+    left: 25.75%;
+  }
+  
+  &__balloon {
+    position: absolute;
+    top: -2rem;
+    left: -2rem;
+    width: 15.75rem;
+    height: 9rem;
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-align: center;
+  
+    @media (min-width: breakpoint("md")) {
+      top: -3rem;
+      left: -25%;
+      width: 21rem;
+      height: 12rem;
+      font-weight: bold;
+      font-size: 2rem;
+    }
+    
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: .85;
+    }
+    
+    p {
+      position: absolute;
+      top: 25%;
+      left: 0;
+      width: 100%;
+    }
+  }
+
+  &__section {
+    @include col(4, false, "md");
+    @include col(5, false, "lg");
+
+    @media (min-width: breakpoint("md")) {
+      order: 0;
+    }
+  }
+
+  &__description {
+    @include smallText();
+  }
+}
