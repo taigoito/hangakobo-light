@@ -13,7 +13,10 @@ const preloader = main.classList.contains('twins')
 
 // Modal
 import Modal from './_modal.js';
-new Modal();
+new Modal(
+  document.querySelector('.modal'),
+  document.querySelector('.lineup__gallery')
+);
 
 // Twins
 import Twins from './_twins.js';

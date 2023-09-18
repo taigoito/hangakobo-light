@@ -5,10 +5,12 @@
  */
 
 export default class Modal {
-  constructor(elem) {
+  constructor(elem, gallery) {
     // 設定
     this._elem = elem || document.querySelector('.modal');
     if (!this._elem) return;
+    this._gallery = gallery || document.querySelector('.gallery');
+    if (!this._gallery) return;
     this.breakpoint = 1000;
 
     // 要素
@@ -20,7 +22,7 @@ export default class Modal {
 
     // 状態
     this.currentIndex = 0;
-    this.len = document.querySelectorAll('[data-index]').length;
+    this.len = this._gallery.querySelectorAll('[data-index]').length;
 
     // イベント監視
     this._handleEvents();
@@ -38,7 +40,7 @@ export default class Modal {
           const src = toggleElem.getAttribute('href');
           // 状態更新
           if (src != '#') {
-            this.currentIndex = toggleElem.querySelector('img').dataset.index;
+            this.currentIndex = toggleElem.querySelector('img').dataset.index - 0; // 数値型へパース
           }
           this.toggle(targetElem, src);
         }
@@ -103,7 +105,7 @@ export default class Modal {
 
   slide(index) {
     // imgソース取得
-    const elem = document.querySelector(`[data-index="${index}"]`);
+    const elem = this._gallery.querySelector(`[data-index="${index}"]`);
     const src = elem.getAttribute('src');
 
     // img要素生成
@@ -121,7 +123,6 @@ export default class Modal {
 
     // 状態更新
     this.currentIndex = index;
-
 
   }
 
